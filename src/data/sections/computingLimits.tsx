@@ -8,14 +8,17 @@
 import { type ReactElement } from "react";
 import { Block } from "@/components/templates";
 import { StackLayout, SplitLayout } from "@/components/layouts";
-import { EditableH2, EditableParagraph } from "@/components/atoms/text/EditableHeadings";
-import { InlineScrubbleNumber } from "@/components/atoms/text/InlineScrubbleNumber";
-import { InlineFeedback } from "@/components/atoms/text/InlineFeedback";
-import { InlineClozeInput } from "@/components/atoms/text/InlineClozeInput";
-import { InlineFormula } from "@/components/atoms/formula/InlineFormula";
-import { FormulaBlock } from "@/components/molecules/formula/FormulaBlock";
-import { Cartesian2D } from "@/components/atoms/visual/Cartesian2D";
-import { InteractionHintSequence } from "@/components/atoms/visual/InteractionHint";
+import {
+    EditableH2,
+    EditableParagraph,
+    InlineScrubbleNumber,
+    InlineFeedback,
+    InlineClozeInput,
+    InlineFormula,
+    Cartesian2D,
+    InteractionHintSequence,
+} from "@/components/atoms";
+import { FormulaBlock } from "@/components/molecules";
 import { useVar, useSetVar } from "@/stores";
 import {
     getVariableInfo,

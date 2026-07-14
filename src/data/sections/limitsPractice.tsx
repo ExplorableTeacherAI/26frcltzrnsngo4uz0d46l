@@ -7,10 +7,13 @@
 import { type ReactElement } from "react";
 import { Block } from "@/components/templates";
 import { StackLayout } from "@/components/layouts";
-import { EditableH2, EditableParagraph } from "@/components/atoms/text/EditableHeadings";
-import { InlineFeedback } from "@/components/atoms/text/InlineFeedback";
-import { InlineClozeChoice } from "@/components/atoms/text/InlineClozeChoice";
-import { InlineFormula } from "@/components/atoms/formula/InlineFormula";
+import {
+    EditableH2,
+    EditableParagraph,
+    InlineFeedback,
+    InlineClozeChoice,
+    InlineFormula,
+} from "@/components/atoms";
 import {
     getVariableInfo,
     choicePropsFromDefinition,

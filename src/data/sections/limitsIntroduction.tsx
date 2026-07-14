@@ -8,12 +8,16 @@
 import { type ReactElement } from "react";
 import { Block } from "@/components/templates";
 import { StackLayout, SplitLayout } from "@/components/layouts";
-import { EditableH1, EditableH2, EditableParagraph } from "@/components/atoms/text/EditableHeadings";
-import { InlineScrubbleNumber } from "@/components/atoms/text/InlineScrubbleNumber";
-import { InlineTooltip } from "@/components/atoms/text/InlineTooltip";
-import { Cartesian2D } from "@/components/atoms/visual/Cartesian2D";
-import { InteractionHintSequence } from "@/components/atoms/visual/InteractionHint";
-import { useVar, useSetVar } from "@/stores";
+import {
+    EditableH1,
+    EditableH2,
+    EditableParagraph,
+    InlineScrubbleNumber,
+    InlineTooltip,
+    Cartesian2D,
+    InteractionHintSequence,
+} from "@/components/atoms";
+import { useVar } from "@/stores";
 import {
     getVariableInfo,
     numberPropsFromDefinition,
@@ -25,7 +29,6 @@ import {
 
 function InfiniteZoomVisualization() {
     const zoomLevel = useVar('zoomLevel', 1) as number;
-    const setVar = useSetVar();
 
     // The function we're exploring: f(x) = x²
     // We're approaching x = 2, so the limit is 4
@@ -63,7 +66,6 @@ function InfiniteZoomVisualization() {
                         initial: [targetX - windowSize * 0.6, f(targetX - windowSize * 0.6)],
                         color: "#62D0AD",
                         constrain: (p) => [p[0], f(p[0])],
-                        onChange: () => {},
                     }
                 ]}
             />

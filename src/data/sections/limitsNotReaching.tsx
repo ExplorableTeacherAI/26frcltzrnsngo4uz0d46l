@@ -9,12 +9,15 @@
 import { type ReactElement } from "react";
 import { Block } from "@/components/templates";
 import { StackLayout, SplitLayout } from "@/components/layouts";
-import { EditableH2, EditableParagraph } from "@/components/atoms/text/EditableHeadings";
-import { InlineScrubbleNumber } from "@/components/atoms/text/InlineScrubbleNumber";
-import { InlineFeedback } from "@/components/atoms/text/InlineFeedback";
-import { InlineClozeChoice } from "@/components/atoms/text/InlineClozeChoice";
-import { Cartesian2D } from "@/components/atoms/visual/Cartesian2D";
-import { InteractionHintSequence } from "@/components/atoms/visual/InteractionHint";
+import {
+    EditableH2,
+    EditableParagraph,
+    InlineScrubbleNumber,
+    InlineFeedback,
+    InlineClozeChoice,
+    Cartesian2D,
+    InteractionHintSequence,
+} from "@/components/atoms";
 import { useVar, useSetVar } from "@/stores";
 import {
     getVariableInfo,

@@ -8,16 +8,19 @@
 import { type ReactElement } from "react";
 import { Block } from "@/components/templates";
 import { StackLayout, SplitLayout } from "@/components/layouts";
-import { EditableH2, EditableParagraph } from "@/components/atoms/text/EditableHeadings";
-import { InlineScrubbleNumber } from "@/components/atoms/text/InlineScrubbleNumber";
-import { InlineFeedback } from "@/components/atoms/text/InlineFeedback";
-import { InlineClozeChoice } from "@/components/atoms/text/InlineClozeChoice";
-import { InlineClozeInput } from "@/components/atoms/text/InlineClozeInput";
-import { InlineFormula } from "@/components/atoms/formula/InlineFormula";
-import { InlineLinkedHighlight } from "@/components/atoms/text/InlineLinkedHighlight";
-import { FormulaBlock } from "@/components/molecules/formula/FormulaBlock";
-import { Cartesian2D } from "@/components/atoms/visual/Cartesian2D";
-import { InteractionHintSequence } from "@/components/atoms/visual/InteractionHint";
+import {
+    EditableH2,
+    EditableParagraph,
+    InlineScrubbleNumber,
+    InlineFeedback,
+    InlineClozeChoice,
+    InlineClozeInput,
+    InlineFormula,
+    InlineLinkedHighlight,
+    Cartesian2D,
+    InteractionHintSequence,
+} from "@/components/atoms";
+import { FormulaBlock } from "@/components/molecules";
 import { useVar, useSetVar } from "@/stores";
 import {
     getVariableInfo,
@@ -126,7 +129,7 @@ function SecantToTangentVisualization() {
                 isTangent ? 'bg-indigo-50 border-indigo-200' : 'bg-amber-50 border-amber-200'
             }`}>
                 <div className={`text-sm font-semibold ${isTangent ? 'text-indigo-700' : 'text-amber-700'}`}>
-                    {isTangent ? "🎯 Tangent Line!" : "Secant Line"}
+                    {isTangent ? "Tangent Line!" : "Secant Line"}
                 </div>
                 <div className="text-xs text-slate-600 mt-1">
                     {isTangent
