@@ -1,6 +1,4 @@
 import { type ReactElement } from "react";
-// import { Block } from "@/components/templates";
-// import { StackLayout, SplitLayout, GridLayout, ScrollytellingLayout, ScrollStep, ScrollVisual } from "@/components/layouts";
 
 // Initialize variables and their colors from this file's variable definitions
 import { useVariableStore, initializeVariableColors } from "@/stores";
@@ -8,82 +6,43 @@ import { getDefaultValues, variableDefinitions } from "./variables";
 useVariableStore.getState().initialize(getDefaultValues());
 initializeVariableColors(variableDefinitions);
 
+// Import all sections
+import { limitsIntroductionBlocks } from "./sections/limitsIntroduction";
+import { limitsNotReachingBlocks } from "./sections/limitsNotReaching";
+import { computingLimitsBlocks } from "./sections/computingLimits";
+import { limitsToDerivativesBlocks } from "./sections/limitsToDerivatives";
+import { limitsPracticeBlocks } from "./sections/limitsPractice";
+
 /**
  * ------------------------------------------------------------------
- * BLOCK CONFIGURATION
+ * LIMITS AND DERIVATIVES LESSON
  * ------------------------------------------------------------------
- * This file is the entry point for your lesson content.
- * 
- * INSTRUCTIONS:
- * 1. Create your content using <Block> components.
- * 2. Use Layout components to organize your blocks.
- * 3. Add your blocks to the `blocks` array below.
- * 
- * ------------------------------------------------------------------
- * CROSS-BLOCK VARIABLES
- * ------------------------------------------------------------------
- * Variables can be shared across blocks using the global store.
- * 
- * DEFINE VARIABLES: src/data/variables.ts (use only variables.ts in this file; same structure as exampleBlocks + exampleVariables)
- * 
- * USAGE IN BLOCKS:
- * 
- * // Reading a value (auto-updates when changed):
- * import { useVar } from '@/stores';
- * const amplitude = useVar('amplitude', 1);
- * 
- * // Setting a value:
- * import { useSetVar } from '@/stores';
- * const setVar = useSetVar();
- * setVar('amplitude', 2.5);
- * 
- * // InlineScrubbleNumber (from variables.ts): getVariableInfo(name) + numberPropsFromDefinition(...)
- * <InlineScrubbleNumber varName="amplitude" {...numberPropsFromDefinition(getVariableInfo('amplitude'))} />
- * 
- * ------------------------------------------------------------------
- * AVAILABLE LAYOUTS
- * ------------------------------------------------------------------
- * 
- * 1. StackLayout
- *    - Best for: Title headers, introductory text, broad visualizations.
- *    - Usage:
- *      <StackLayout maxWidth="xl">
- *          <Block id="intro">...</Block>
- *      </StackLayout>
- * 
- * 2. SplitLayout
- *    - Best for: Side-by-side content (e.g., Text + Visualization).
- *    - Usage:
- *      <SplitLayout ratio="1:1" gap="lg">
- *          <Block id="left">...</Block>
- *          <Block id="right">...</Block>
- *      </SplitLayout>
- * 
- * 3. GridLayout
- *    - Best for: Multiple equal-sized items (cards, galleries).
- *    - Usage:
- *      <GridLayout columns={3} gap="md">
- *          <Block id="item-1">...</Block>
- *          <Block id="item-2">...</Block>
- *          <Block id="item-3">...</Block>
- *      </GridLayout>
- * 
- * 4. ScrollytellingLayout
- *    - Best for: Narrative steps with a reactive sticky visualization.
- *    - Usage:
- *      <ScrollytellingLayout varName="scrollStep" visualPosition="right">
- *          <ScrollStep><Block id="step-0">...</Block></ScrollStep>
- *          <ScrollStep><Block id="step-1">...</Block></ScrollStep>
- *          <ScrollVisual><Block id="viz">...</Block></ScrollVisual>
- *      </ScrollytellingLayout>
- * 
- * EXAMPLES:
- * See `src/data/exampleBlocks.tsx` for comprehensive examples.
- * 
- * NOTE: If you are seeing examples in the browser instead of this content,
- * check your .env file and set VITE_SHOW_EXAMPLES=false.
+ *
+ * An interactive explorable explanation teaching:
+ * 1. What limits are intuitively (Infinite Zoom)
+ * 2. Why limits don't require reaching the value (Fill the Gap)
+ * 3. How to compute limits (Trace and Predict)
+ * 4. How derivatives emerge from limits (Secant-to-Tangent)
+ * 5. Summary and assessment
+ *
+ * Target audience: Post-secondary students (ages 17-20)
+ * Prior knowledge: No prior knowledge of limits assumed
+ * Key misconception addressed: Thinking f(a) must equal L for the limit to exist
  */
 
 export const blocks: ReactElement[] = [
-    // Start adding your blocks here!
+    // Section 1: What is a Limit?
+    ...limitsIntroductionBlocks,
+
+    // Section 2: The Limit Doesn't Require Reaching
+    ...limitsNotReachingBlocks,
+
+    // Section 3: Computing Limits
+    ...computingLimitsBlocks,
+
+    // Section 4: From Limits to Derivatives
+    ...limitsToDerivativesBlocks,
+
+    // Section 5: Practice & Assessment
+    ...limitsPracticeBlocks,
 ];

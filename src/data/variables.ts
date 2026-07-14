@@ -1,12 +1,12 @@
 /**
  * Variables Configuration
  * =======================
- * 
+ *
  * CENTRAL PLACE TO DEFINE ALL SHARED VARIABLES
- * 
+ *
  * This file defines all variables that can be shared across sections.
  * AI agents should read this file to understand what variables are available.
- * 
+ *
  * USAGE:
  * 1. Define variables here with their default values and metadata
  * 2. Use them in any section with: const x = useVar('variableName', defaultValue)
@@ -55,106 +55,168 @@ export interface VariableDefinition {
  * =====================================================
  * 🎯 DEFINE YOUR VARIABLES HERE
  * =====================================================
- * 
- * SUPPORTED TYPES:
- * 
- * 1. NUMBER (slider):
- *    { defaultValue: 5, type: 'number', min: 0, max: 10, step: 1 }
- * 
- * 2. TEXT (free text):
- *    { defaultValue: 'Hello', type: 'text', placeholder: 'Enter text...' }
- * 
- * 3. SELECT (dropdown):
- *    { defaultValue: 'sine', type: 'select', options: ['sine', 'cosine', 'tangent'] }
- * 
- * 4. BOOLEAN (toggle):
- *    { defaultValue: true, type: 'boolean' }
- * 
- * 5. ARRAY (list of numbers):
- *    { defaultValue: [1, 2, 3], type: 'array' }
- * 
- * 6. OBJECT (complex data):
- *    { defaultValue: { x: 5, y: 10 }, type: 'object', schema: '{ x: number, y: number }' }
  */
 export const variableDefinitions: Record<string, VariableDefinition> = {
     // ========================================
-    // ADD YOUR VARIABLES HERE
+    // SECTION 1: What is a Limit? (Infinite Zoom)
     // ========================================
 
-    // Uncomment and modify these examples for your lesson:
-
-    /*
-    // ─────────────────────────────────────────
-    // NUMBER - Use with sliders
-    // ─────────────────────────────────────────
-    myValue: {
-        defaultValue: 5,
+    zoomLevel: {
+        defaultValue: 1,
         type: 'number',
-        label: 'My Value',
-        description: 'A number that controls something',
-        unit: 'm',           // optional unit display
-        min: 0,
-        max: 10,
+        label: 'Zoom Level',
+        description: 'Controls how zoomed in we are on the limit point',
+        min: 1,
+        max: 100,
+        step: 1,
+        color: '#62D0AD',
+    },
+
+    limitTargetX: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Target X',
+        description: 'The x-value we are approaching',
+        min: -5,
+        max: 5,
         step: 0.5,
+        color: '#8E90F5',
     },
 
-    // ─────────────────────────────────────────
-    // TEXT - Free text input
-    // ─────────────────────────────────────────
-    lessonTitle: {
-        defaultValue: 'My Lesson',
-        type: 'text',
-        label: 'Lesson Title',
-        description: 'The title of your lesson',
-        placeholder: 'Enter a title...',
+    // ========================================
+    // SECTION 2: Limit Doesn't Require Reaching (Fill the Gap)
+    // ========================================
+
+    holeYPosition: {
+        defaultValue: 3,
+        type: 'number',
+        label: 'Hole Y Position',
+        description: 'Where the floating point is placed vertically',
+        min: 0,
+        max: 6,
+        step: 0.1,
+        color: '#F7B23B',
     },
 
-    // ─────────────────────────────────────────
-    // SELECT - Dropdown with options
-    // ─────────────────────────────────────────
-    difficulty: {
-        defaultValue: 'medium',
+    // ========================================
+    // SECTION 3: Computing Limits (Trace and Predict)
+    // ========================================
+
+    traceX: {
+        defaultValue: 0,
+        type: 'number',
+        label: 'Trace X',
+        description: 'Current x position while tracing the curve',
+        min: -4,
+        max: 4,
+        step: 0.1,
+        color: '#62D0AD',
+    },
+
+    // ========================================
+    // SECTION 4: Limits to Derivatives (Secant-to-Tangent)
+    // ========================================
+
+    fixedPointX: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Fixed Point X',
+        description: 'The x-coordinate of the fixed point',
+        min: -3,
+        max: 3,
+        step: 0.1,
+        color: '#8E90F5',
+    },
+
+    movingPointX: {
+        defaultValue: 2.5,
+        type: 'number',
+        label: 'Moving Point X',
+        description: 'The x-coordinate of the moving point for the secant line',
+        min: -3,
+        max: 3,
+        step: 0.01,
+        color: '#ef4444',
+    },
+
+    // ========================================
+    // ASSESSMENT QUESTIONS
+    // ========================================
+
+    answerLimitIntuition: {
+        defaultValue: '',
         type: 'select',
-        label: 'Difficulty',
-        description: 'The difficulty level of the lesson',
-        options: ['easy', 'medium', 'hard', 'expert'],
+        label: 'Limit Intuition Answer',
+        description: 'Student answer for what a limit represents',
+        placeholder: '???',
+        correctAnswer: 'approaches',
+        options: ['equals', 'approaches', 'jumps to'],
+        color: '#62D0AD',
     },
 
-    // ─────────────────────────────────────────
-    // BOOLEAN - Toggle switch
-    // ─────────────────────────────────────────
-    showHints: {
-        defaultValue: true,
-        type: 'boolean',
-        label: 'Show Hints',
-        description: 'Toggle to show or hide hints',
+    answerLimitExists: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Limit Exists Answer',
+        description: 'Student answer about when a limit exists',
+        placeholder: '???',
+        correctAnswer: 'can still exist',
+        options: ['cannot exist', 'can still exist', 'equals zero'],
+        color: '#8E90F5',
     },
 
-    // ─────────────────────────────────────────
-    // ARRAY - List of numbers
-    // ─────────────────────────────────────────
-    dataPoints: {
-        defaultValue: [1, 4, 9, 16, 25],
-        type: 'array',
-        label: 'Data Points',
-        description: 'Y-values for plotting a graph',
+    answerLimitValue: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Limit Value Answer',
+        description: 'Student answer for computing a specific limit',
+        placeholder: '?',
+        correctAnswer: '4',
+        color: '#F7B23B',
     },
 
-    // ─────────────────────────────────────────
-    // OBJECT - Complex structured data
-    // ─────────────────────────────────────────
-    graphSettings: {
-        defaultValue: { 
-            xMin: -10, 
-            xMax: 10, 
-            showGrid: true 
-        },
-        type: 'object',
-        label: 'Graph Settings',
-        description: 'Configuration for the graph display',
-        schema: '{ xMin: number, xMax: number, showGrid: boolean }',
+    answerDerivativeDefinition: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Derivative Definition Answer',
+        description: 'Student answer about the derivative definition',
+        placeholder: '???',
+        correctAnswer: 'the limit of the secant slope',
+        options: ['the secant line itself', 'the limit of the secant slope', 'the average rate of change'],
+        color: '#AC8BF9',
     },
-    */
+
+    answerDerivativeSlope: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Derivative Slope Answer',
+        description: 'Student answer for the slope of x² at x=1',
+        placeholder: '?',
+        correctAnswer: '2',
+        color: '#ef4444',
+    },
+
+    // ========================================
+    // LINKED HIGHLIGHTS
+    // ========================================
+
+    limitHighlight: {
+        defaultValue: '',
+        type: 'linkedHighlight',
+        label: 'Limit Highlight',
+        description: 'For highlighting limit-related elements',
+        color: '#62D0AD',
+        bgColor: 'rgba(98, 208, 173, 0.15)',
+    },
+
+    derivativeHighlight: {
+        defaultValue: '',
+        type: 'linkedHighlight',
+        label: 'Derivative Highlight',
+        description: 'For highlighting derivative-related elements',
+        color: '#8E90F5',
+        bgColor: 'rgba(142, 144, 245, 0.15)',
+    },
 };
 
 /**
